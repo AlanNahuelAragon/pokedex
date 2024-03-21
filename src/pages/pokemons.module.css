@@ -1,0 +1,49 @@
+.nav {
+    margin-top: 90px;
+    margin-bottom: 90px;
+    background: var(--bg-blackgr);
+}
+
+.listItem {
+    background: var(--bg-blackgr);
+    display: flex;
+    border-bottom: 3px solid rgb(56, 56, 56);;
+    padding: 20px;
+    text-decoration: none;
+    align-items: center;
+}
+
+.listItem> :first-child {
+    margin-right: 15px;
+}
+
+.listItem> :last-child {
+    margin: 0;
+}
+
+.listItemIcon {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+}
+
+.listItemText {
+    flex-grow: 2;
+}
+
+.listItemText> :first-child {
+    background: white;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 11px;
+    font-weight: bold;
+}
+
+.listItemText> :last-child {
+    color: grey;
+    font-weight: bolder;
+    font-size: 2rem;
+    display: block;
+}
