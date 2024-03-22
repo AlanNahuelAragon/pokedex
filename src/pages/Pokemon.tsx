@@ -43,7 +43,7 @@ const Pokemon = () => {
     }
     return (
         <>
-            <Header query={query} setQuery={setQuery} />
+            <Header query={query} setQuery={setQuery} enableKeyDown={true} />
             <div className={styles.pokemon}>
                 <button className={styles.pokeballButton} onClick={() => navigate(-1)}>
                     <img className={styles.pokeballImg} src={goBack} alt="pokeball" />

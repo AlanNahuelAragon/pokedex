@@ -44,7 +44,7 @@ const Pokemons = () => {
 
   return (
     <>
-      <Header query={query} setQuery={setQuery} />
+      <Header query={query} setQuery={setQuery} enableKeyDown={false}/>
       <main>
         <nav className={styles.nav} >
           {filteredPokemons?.length===0 ?(

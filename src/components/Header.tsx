@@ -5,10 +5,11 @@ import { useEffect } from "react";
 
 type HeaderProps ={
     query:string,
-    setQuery: (query: string)=>void
+    setQuery: (query: string)=>void,
+    enableKeyDown: boolean
 }
 
-const Header = ({query,setQuery}:HeaderProps) => {
+const Header = ({query,setQuery,enableKeyDown}:HeaderProps) => {
     const {name} : {name?:string} = useParams();
     const navigate = useNavigate();
     useEffect(()=>{
@@ -17,9 +18,13 @@ const Header = ({query,setQuery}:HeaderProps) => {
         }
     },[name,setQuery])
 
-    const handleSubmit = ()=>{
-        navigate(`/pokedex/pokemons/${query.toLowerCase()}`)
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
+        e.preventDefault();
+        if(enableKeyDown){
+            navigate(`/pokedex/pokemons/${query.toLowerCase()}`)
+        }
     }
+    
     const backToMain = ()=>{
         setQuery("")
         navigate(`/pokedex/pokemons/`)
