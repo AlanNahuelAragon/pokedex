@@ -31,7 +31,6 @@ const Pokemon = () => {
             }catch(error)
             {
                 console.error('pokemon not found',error)
-                navigate("/pokedex/pokemonnotfound/")
             }          
         }
         getPokemon();
