@@ -23,10 +23,16 @@ const Pokemon = () => {
     useEffect(() => {
         async function getPokemon() {
             setIsLoading(true);
-            const fetchedPokemon = await fetchPokemon(name as string);
-            await waitFor(700);
-            setPokemon(fetchedPokemon);
-            setIsLoading(false);
+            try{
+                const fetchedPokemon = await fetchPokemon(name as string);
+                await waitFor(700);
+                setPokemon(fetchedPokemon);
+                setIsLoading(false);
+            }catch(error)
+            {
+                console.error('pokemon not found',error)
+                navigate("/pokedex/not-found/")
+            }          
         }
         getPokemon();
     }, [name]);

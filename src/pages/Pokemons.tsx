@@ -7,11 +7,20 @@ import styles from "./pokemons.module.css";
 import Header from "../components/Header";
 import LoadingScreen from "../components/LoadingScreen";
 import Footer from "../components/Footer";
+import MS0 from "../assets/MSN0.webp"
+import MS1 from "../assets/MSN1.webp"
+import MS2 from "../assets/MSN2.webp"
+import MS3 from "../assets/MSN3.webp"
+
+
 
 const Pokemons = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const missingNO = [MS0,MS1,MS2,MS3];
+
+  const randomImg = missingNO[Math.floor(Math.random()*missingNO.length)]
 
   useEffect(() => {
     const fetchAllPokemons = async () => {
@@ -29,6 +38,7 @@ const Pokemons = () => {
       <LoadingScreen/>
     )
   }
+
   const filteredPokemons = pokemons?.slice(0,151).filter((pokemon)=>{
   return pokemon.name.toLowerCase().match(query.toLocaleLowerCase())})
 
@@ -37,11 +47,24 @@ const Pokemons = () => {
       <Header query={query} setQuery={setQuery} />
       <main>
         <nav className={styles.nav} >
-          {filteredPokemons?.slice(0, 151).map((pokemon) => (
+          {filteredPokemons?.length===0 ?(
+            <div className={styles.listItem}>
+              <img
+                className={styles.listItemIcon}
+                src={randomImg}
+                alt="Not found"
+              />
+              <div className={styles.listItemText}>
+                <span>Pokemon not found</span>
+                <span>???</span>
+              </div>
+            </div>
+          ):(
+          filteredPokemons?.slice(0, 151).map((pokemon) => (
             <Link
               key={pokemon.id}
               className={styles.listItem}
-              to={`/pokemon/${pokemon.name.toLowerCase()}`}
+              to={`/pokedex/pokemon/${pokemon.name.toLowerCase()}`}
             >
               <img
                 className={styles.listItemIcon}
@@ -53,7 +76,7 @@ const Pokemons = () => {
                 <span>{pokemon.id}</span>
               </div>
             </Link>
-          ))}
+          )))}
         </nav>
       </main>
       <Footer />
